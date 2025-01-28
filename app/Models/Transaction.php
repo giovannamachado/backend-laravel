@@ -10,8 +10,14 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'description',
-        'amount',
+        'user_id',
+        'tipo',
+        'valor',
         'category_id',
     ];
+
+    public function category()
+{
+    return $this->belongsTo(\App\Models\Category::class);
+}
 }

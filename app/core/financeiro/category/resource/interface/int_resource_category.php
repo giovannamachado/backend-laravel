@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\financeiro\resource\interface;
+namespace app\core\financeiro\category\resource\interface;
 
 
 interface int_resource_category {

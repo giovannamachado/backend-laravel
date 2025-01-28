@@ -34,19 +34,24 @@ class CategoryController extends Controller
         
         $category = Category::find($id);
 
-        
         if (!$category) {
             return response()->json(['message' => 'Categoria não encontrada.'], 404);
         }
 
-        
         if ($category->transactions()->count() > 0) {
             return response()->json(['message' => 'A categoria não pode ser deletada porque possui transações associadas.'], 400);
         }
 
-        
         $category->delete();
 
         return response()->json(['message' => 'Categoria deletada com sucesso.'], 200);
     }
+
+    public function index()
+    {
+        $categories = Category::with('transactions:id,category_id,amount')->get(['id', 'nome_category']);   
+        
+        return response()->json($categories);
+    }
+
 }

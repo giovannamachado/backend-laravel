@@ -1,9 +1,9 @@
 <?php
 
-namespace App\core\financeiro\category\resource;
+namespace app\core\financeiro\category\resource;
 
 use app\Models\Category;
-use app\core\financeiro\resource\interface\int_resource_category;
+use app\core\financeiro\category\resource\interface\int_resource_category;
 
 class ResourceCategory implements int_resource_category {
 

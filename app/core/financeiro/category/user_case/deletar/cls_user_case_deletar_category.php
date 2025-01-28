@@ -3,7 +3,7 @@
 namespace app\core\financeiro\category\user_case\deletar;
 
 
-use app\core\financeiro\resource\interface\int_resource_category;
+use app\core\financeiro\category\resource\interface\int_resource_category;
 use app\Models\Transaction;
 
 class cls_user_case_deletar_category {

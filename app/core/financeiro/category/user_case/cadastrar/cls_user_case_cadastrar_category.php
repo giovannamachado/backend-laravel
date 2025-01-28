@@ -5,7 +5,7 @@ namespace app\core\financeiro\category\user_case\cadastrar;
 use app\core\category\Entities\cls_category;
 use app\core\financeiro\category\user_case\cadastrar\dto\dto_category_cadastrar_entrada;
 use app\core\financeiro\category\user_case\cadastrar\dto\dto_category_cadastrar_saida;
-use app\core\financeiro\resource\interface\int_resource_category;
+use app\core\financeiro\category\resource\interface\int_resource_category;
 
 class cls_user_case_cadastrar_category {
     public function __construct(private int_resource_category $resource_category) {}

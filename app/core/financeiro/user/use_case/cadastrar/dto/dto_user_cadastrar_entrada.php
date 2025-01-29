@@ -2,7 +2,7 @@
 
 namespace app\core\financeiro\user\use_case\cadastrar\dto;
 
-class dto_user_cadastrar__entrada {
+class dto_user_cadastrar_entrada {
     public function __construct(
         public string $nome_completo,
         public int $cpf,

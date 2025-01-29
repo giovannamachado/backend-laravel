@@ -1,40 +1,17 @@
 <?php
 
-namespace Database\Seeders;
+namespace database\seeders;
 
-use app\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use app\Models\Transaction;
-use Illuminate\Database\Seeder;
+use app\Models\User;
+use app\Models\Category;
 
-class TransactionSeeder extends Seeder{
-
+class TransactionSeeder extends Seeder
+{
     public function run()
     {
-        $category1 = Category::create(['nome_category' => 'Categoria 1']);
-        $category2 = Category::create(['nome_category' => 'Categoria 2']);
-        
-        Transaction::create([
-            'category_id' => $category1->id,
-            'amount' => 100.00,
-            
-        ]);
-
-        Transaction::create([
-            'category_id' => $category1->id,
-            'amount' => 200.00,
-            
-        ]);
-
-        Transaction::create([
-            'category_id' => $category2->id,
-            'amount' => 150.00,
-            
-        ]);
-
-        Transaction::create([
-            'category_id' => $category2->id,
-            'amount' => 300.00,
-        
-        ]);
+        Transaction::factory()->count(10)->create(); 
     }
 }

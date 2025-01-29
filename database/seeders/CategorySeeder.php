@@ -1,23 +1,17 @@
 <?php
 
-namespace Database\Seeders;
+namespace database\seeders;
 
-use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use database\factories\CategoryFactory;
+use app\Models\Category;
 
 class CategorySeeder extends Seeder
 {
     public function run()
     {
-        Category::create([
-            'nome_category' => 'Categoria Exemplo 1',
-        ]);
-
-        Category::create([
-            'nome_category' => 'Categoria Exemplo 2',
-        ]);
-
-        echo "Category seeded successfully!";
+        Category::factory()->count(3)->create(); 
     }
 }

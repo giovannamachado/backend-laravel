@@ -1,5 +1,5 @@
 <?php
-namespace App\core\usuario\entidade;
+namespace app\core\financeiro\user\Entities;
 
 class cls_user {
     private int $id;

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +8,17 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories'; 
-    protected $fillable = ['nome_category', 'id_category']; 
+    protected $table = 'categories';
+    
+    
+    protected $primaryKey = 'id_category'; 
+
+    protected $fillable = ['nome_category', 'id_category'];
+
+    
+    public function user()
+        {
+            return $this->belongsTo(User::class);
+        }
 }
+    

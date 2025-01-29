@@ -5,7 +5,7 @@ namespace app\core\financeiro\transaction\user_case\cadastrar;
 use app\core\financeiro\transaction\Entities\cls_transaction;
 use app\core\financeiro\transaction\user_case\cadastrar\dto\dto_transaction_cadastrar_entrada;
 use app\core\financeiro\transaction\user_case\cadastrar\dto\dto_transaction_cadastrar_saida;
-use app\core\financeiro\resource\interface\int_resource_transaction;
+use app\core\financeiro\transaction\resource\interface\int_resource_transaction;
 
 class cls_user_case_cadastrar_transaction {
     public function __construct(private int_resource_transaction $resource_transaction) {}

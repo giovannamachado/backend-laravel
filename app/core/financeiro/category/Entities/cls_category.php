@@ -1,5 +1,5 @@
 <?php
-namespace app\core\category\Entities;
+namespace app\core\financeiro\category\Entities;
 
 class cls_category {
     private string $id;
@@ -22,7 +22,6 @@ class cls_category {
     }
 
 
-    // Método para verificar a validade da categoria (exemplo de lógica de negócios)
     public function validar(): bool {
         return !empty($this->nome_category);
     }

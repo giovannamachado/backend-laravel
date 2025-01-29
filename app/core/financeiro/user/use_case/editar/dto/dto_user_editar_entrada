@@ -1,11 +1,11 @@
 <?php
+namespace app\core\financeiro\user\use_case\editar\dto;
 
-namespace app\core\financeiro\transaction\user_case\cadastrar\dto;
-
-class dto_transaction_cadastrar_entrada {
+class dto_user_editar_entrada {
     public function __construct(
+        public int $id,
         public string $nome_completo,
-        public string $cpf,
+        public int $cpf,
         public string $email,
         public string $senha
     ) {}

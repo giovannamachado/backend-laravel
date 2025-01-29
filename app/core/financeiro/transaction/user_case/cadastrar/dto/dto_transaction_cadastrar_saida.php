@@ -8,6 +8,7 @@ class dto_transaction_cadastrar_saida {
         public int $user_id,
         public string $tipo,
         public float $valor,
-        public int $category_id
+        public int $category_id,
+        public string $created_at
     ) {}
 }

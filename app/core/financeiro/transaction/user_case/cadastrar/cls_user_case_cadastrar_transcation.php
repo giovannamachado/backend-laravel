@@ -4,37 +4,33 @@ namespace app\core\financeiro\transaction\user_case\cadastrar;
 
 use app\core\financeiro\transaction\Entities\cls_transaction;
 use app\core\financeiro\transaction\user_case\cadastrar\dto\dto_transaction_cadastrar_entrada;
-use app\core\financeiro\transaction\user_case\cadastrar\dto\dto_transaction_cadastrar_saida;
 use app\core\financeiro\transaction\resource\interface\int_resource_transaction;
+use app\core\financeiro\transaction\resource\ResourceTransaction;
+use app\core\financeiro\transaction\user_case\cadastrar\dto\dto_transaction_cadastrar_saida;
+use app\Models\Transaction;
 
 class cls_user_case_cadastrar_transaction {
-    public function __construct(private int_resource_transaction $resource_transaction) {}
+    private ResourceTransaction $repository;
 
-    private function de_entidade_para_dto($entidade): dto_transaction_cadastrar_saida {
+    public function __construct(ResourceTransaction $repository) {
+        $this->repository = $repository;
+    }
+
+    public function handle(dto_transaction_cadastrar_entrada $entrada): dto_transaction_cadastrar_saida{
+        $transaction = $this->repository->criar([
+            'user_id' => $entrada->user_id,
+            'tipo' => $entrada->tipo,
+            'valor' => $entrada->valor,
+            'category_id' => $entrada->category_id,
+        ]);
+
         return new dto_transaction_cadastrar_saida(
-            $entidade['id'],
-            $entidade['user_id'],
-            $entidade['tipo'],
-            $entidade['valor'],
-            $entidade['category_id']
+            id: $transaction['id'],
+            user_id: $transaction['user_id'],
+            tipo: $transaction['tipo'],
+            valor: $transaction['valor'],
+            category_id: $transaction['category_id'],
+            created_at: $transaction['created_at']
         );
-    }
-
-    private function de_dto_para_array($dto_entrada): array {
-        return [
-            'id' => '',
-            'user_id' => $dto_entrada->user_id,
-            'tipo' => $dto_entrada->tipo,
-            'valor' => $dto_entrada->valor,
-            'category_id' => $dto_entrada->category_id,
-        ];
-    }
-
-    public function execute(dto_transaction_cadastrar_entrada $dto_entrada): dto_transaction_cadastrar_saida {
-        $dados = $this->de_dto_para_array($dto_entrada);
-
-        $resultado = $this->resource_transaction->criar($dados);
-
-        return $this->de_entidade_para_dto($resultado);
     }
 }

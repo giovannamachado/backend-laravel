@@ -24,10 +24,13 @@ class cls_user_case_deletar_user {
         }
 
         
-        $transacoes = $this->transactionResource->buscar_por_id($dados->user_id);
+        $transacoes = $this->transactionResource->excluir_por_id($dados->user_id);
         
+        if ($transacoes === false) {
+            throw new \Exception('Erro ao excluir transações.');
+        }
         
-        if ($transacoes->count() > 0) {
+        if (is_array($transacoes) && count($transacoes) > 0) {
             throw new \Exception('Usuário não pode ser deletado pois possui transações associadas.');
         }
 

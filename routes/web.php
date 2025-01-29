@@ -10,8 +10,12 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/transactions', [TransactionController::class, 'store']);
 Route::delete('/transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
-Route::get('/transacoes', [TransactionController::class, 'index']);
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
+Route::get('/transactions/filter', [TransactionController::class, 'filter']);
 Route::put('/user/{id}', [UserController::class, 'editar']);
+
+
+
 
 
 

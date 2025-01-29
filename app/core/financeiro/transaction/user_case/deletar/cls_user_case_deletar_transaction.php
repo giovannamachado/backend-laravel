@@ -2,33 +2,26 @@
 
 namespace app\core\financeiro\transaction\user_case\deletar;
 
-use app\core\financeiro\transaction\resource\interface\int_resource_transaction;
+use app\core\financeiro\transaction\resource\ResourceTransaction;
+use app\core\financeiro\transaction\user_case\deletar\dto\dto_transaction_deletar_entrada;
+use app\core\financeiro\transaction\user_case\deletar\dto\dto_transaction_deletar_saida;
 
 class cls_user_case_deletar_transaction {
-    public function __construct(private int_resource_transaction $resource_transaction) {}
+    private ResourceTransaction $transactionResource;
 
-    public function executar($id) {
-        $transaction = $this->resource_transaction->buscar_por_id($id);
+    public function __construct(ResourceTransaction $transactionResource) {
+        $this->transactionResource = $transactionResource;
+    }
 
-        if (!$transaction) {
-            return [
-                'status' => 'error',
-                'message' => 'Transação não encontrada.'
-            ];
+    public function deletarTransaction(dto_transaction_deletar_entrada $dados): dto_transaction_deletar_saida{
+        $transacao = $this->transactionResource->buscar_por_id($dados->transaction_id);
+
+        if (!$transacao) {
+            throw new \Exception('Transação não encontrada');
         }
 
-        $resultado = $this->resource_transaction->excluir_por_id($id);
+        $deletado = $this->transactionResource->excluir_por_id($dados->transaction_id);
 
-        if ($resultado) {
-            return [
-                'status' => 'success',
-                'message' => 'Transação removida com sucesso.'
-            ];
-        }
-
-        return [
-            'status' => 'error',
-            'message' => 'Erro ao remover a transação.'
-        ];
+        return new dto_transaction_deletar_saida($deletado);
     }
 }
